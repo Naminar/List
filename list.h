@@ -1,4 +1,8 @@
 
+#ifndef LIST_
+
+#define LIST_
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -49,3 +53,5 @@ long long int   serch_element           (Tree*, long long int)      ;
 void            do_list_linearization   (Tree*, const char *const)  ;
 void            list_destructor         (Tree*)                     ;
 void            list_dump               (Tree*)                     ;
+
+#endif
