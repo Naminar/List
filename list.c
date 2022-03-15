@@ -281,7 +281,9 @@ void list_dump(Tree* tree)
         "<f0> lst ptr               \\n %p  |"
         "<f1> max capacity          \\n %u  |"
         "<f2> first free cell       \\n %lld|"
-        "<f3> sort flag             \\n %d  |"
+        "<f3> sort flag             \\n %d   "
+        "\\n-------------------------------- "
+        "\\n0 - not sorted\\l1 - sorted\\l  |"
         "<f4> occupied cells number \\n %u  \"];"
 
         "struct1:f0 -> elem0;",
