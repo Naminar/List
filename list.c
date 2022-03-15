@@ -279,16 +279,18 @@ void list_dump(Tree* tree)
 
         "struct1 [label =\" "
         "<f0> lst ptr               \\n %p  |"
-        "<f1> max capacity          \\n %u  |"
-        "<f2> first free cell       \\n %lld|"
-        "<f3> sort flag             \\n %d   "
+        "<f1> linearization password\\n %s  |"
+        "<f2> max capacity          \\n %u  |"
+        "<f3> first free cell       \\n %lld|"
+        "<f4> sort flag             \\n %d   "
         "\\n-------------------------------- "
         "\\n0 - not sorted\\l1 - sorted\\l  |"
-        "<f4> occupied cells number \\n %u  \"];"
+        "<f5> occupied cells number \\n %u  \"];"
 
         "struct1:f0 -> elem0;",
 
-        tree->lst, tree->capacity, 0 - tree->free, tree->sort_flag, tree->size
+        tree->lst,      tree->password,     tree->capacity,
+        0 - tree->free, tree->sort_flag,    tree->size
     );
 
     while (next_cell)
