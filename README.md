@@ -2,4 +2,4 @@
 List can be used for CPU. For example, to store labels.
 
 ### And with graphic dump.
-![](images/dump.pdf)
+![](images/dump.png)
