@@ -15,7 +15,7 @@
     list_insert(&der, 3, 4);
     list_insert(&der, 4, 55);
 
-    do_list_linearization(&der, "my");
+    do_list_linearization(&der, "my"); //Confirm the password
 
     list_delete_after(&der,1);
 
