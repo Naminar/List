@@ -32,7 +32,7 @@
 
     list_destructor(&der);
 
-    return 1;
+    return 0;
 }  */
 
 void list_init(Tree* tree, size_t capacity)
