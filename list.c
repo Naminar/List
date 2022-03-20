@@ -3,7 +3,7 @@
 
 void list_init(Tree* tree, size_t capacity)
 {
-    assert(capacity > 0);
+    assert(tree && capacity > 0);
 
     tree->lst = (List*) calloc(capacity + 1, sizeof (List));
 
@@ -123,6 +123,8 @@ size_t list_delete_after(Tree* tree, long long int num)
 
 void do_list_linearization(Tree* tree, const char *const password)
 {
+    assert(tree);
+
     if(strcmp(password, tree->password))
     {
         printf("$100 is transferred to the developer's account.\n"
@@ -208,7 +210,7 @@ void do_list_linearization(Tree* tree, const char *const password)
 
 long long int serch_element(Tree* tree, long long int s_index)
 {
-    assert(s_index > 0 && tree);
+    assert(tree && s_index > 0);
 
     long long int next_cell = 0;
 
@@ -219,7 +221,6 @@ long long int serch_element(Tree* tree, long long int s_index)
 
     return next_cell;
 }
-
 
 void list_destructor(Tree* tree)
 {
