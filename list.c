@@ -1,40 +1,6 @@
 
 #include "list.h"
 
-int main(void)
-{
-    Tree der = {"my"}; //init your password;
-
-    size_t capacity = 9;
-
-    list_init(&der, capacity);
-
-    list_insert(&der, 0, 1);
-    list_insert(&der, 1, 2);
-    list_insert(&der, 2, 3);
-    list_insert(&der, 3, 4);
-    list_insert(&der, 4, 55);
-
-    do_list_linearization(&der, "my"); //Confirm the password
-
-    list_delete_after(&der,1);
-
-    //printf("$$ %lld $$\n", der.free);
-
-    //list_insert(&der, 1, 2);
-
-    //printf("$$ %lld $$\n", der.free);//serch_element(&der, 2));
-
-    for (int ind = 0; ind <= capacity; ind++)
-      printf("%d = %d__%lld__%lld\n", ind, der.lst[ind].data, der.lst[ind].next, der.lst[ind].prev);
-
-    list_dump(&der);
-
-    list_destructor(&der);
-
-    return 0;
-}//*/
-
 void list_init(Tree* tree, size_t capacity)
 {
     assert(capacity > 0);
@@ -340,6 +306,42 @@ void list_dump(Tree* tree)
 
     system("dump.pdf");
 }
+
+//===============================================
+
+/*int main(void)
+{
+    Tree der = {"my"}; //init your password;
+
+    size_t capacity = 9;
+
+    list_init(&der, capacity);
+
+    list_insert(&der, 0, 1);
+    list_insert(&der, 1, 2);
+    list_insert(&der, 2, 3);
+    list_insert(&der, 3, 4);
+    list_insert(&der, 4, 55);
+
+    do_list_linearization(&der, "my"); //Confirm the password
+
+    list_delete_after(&der,1);
+
+    //printf("$$ %lld $$\n", der.free);
+
+    //list_insert(&der, 1, 2);
+
+    //printf("$$ %lld $$\n", der.free);//serch_element(&der, 2));
+
+    for (int ind = 0; ind <= capacity; ind++)
+      printf("%d = %d__%lld__%lld\n", ind, der.lst[ind].data, der.lst[ind].next, der.lst[ind].prev);
+
+    list_dump(&der);
+
+    list_destructor(&der);
+
+    return 0;
+}//*/
 
 
 
