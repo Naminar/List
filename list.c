@@ -1,7 +1,7 @@
 
 #include "list.h"
 
-/*int main(void)
+int main(void)
 {
     Tree der = {"my"}; //init your password;
 
@@ -33,7 +33,7 @@
     list_destructor(&der);
 
     return 0;
-}  */
+}//*/
 
 void list_init(Tree* tree, size_t capacity)
 {
@@ -94,8 +94,10 @@ size_t list_insert(Tree* tree, long long int num, type value)
 
     //for empty cell _ field prev is zero
     //===========================================
+
     if (tree->free)
         tree->lst[0 - tree->free].prev = 0;
+
     //===========================================
 
     tree->lst[tree->lst[num].next].prev = 0 - free_cell;
@@ -161,13 +163,13 @@ void do_list_linearization(Tree* tree, const char *const password)
         return;
     }
 
-    printf("Process started.\n");
+    printf("Linearization started.\n");
 
-    Tree tree_copy = *tree;
+    List* list_p = NULL;
 
-    tree_copy.lst = (List*) calloc(tree_copy.capacity + 1, sizeof(List));
+    list_p = (List*) calloc(tree->capacity + 1, sizeof(List));
 
-    assert(tree_copy.lst);
+    assert(list_p);
 
     long long int s_ind = 0;
 
@@ -178,50 +180,46 @@ void do_list_linearization(Tree* tree, const char *const password)
         if (!next_cell)
             break;
 
-        tree_copy.lst[s_ind + 1] = tree->lst[next_cell];
+        list_p[s_ind + 1] = tree->lst[next_cell];
 
-        tree_copy.lst[s_ind + 1].next = s_ind + 2;
+        list_p[s_ind + 1].next = s_ind + 2;
 
-        tree_copy.lst[s_ind + 1].prev = s_ind ;
+        list_p[s_ind + 1].prev = s_ind ;
 
         next_cell  = NEXT_OF_NEXT_CELL;
     }
 
-    tree_copy.lst[s_ind].next = 0;
+    list_p[s_ind].next = 0;
 
     /////////////////////////////
 
-    tree_copy.lst[0].prev = s_ind;
+    list_p[0].prev = s_ind;
 
-    tree_copy.lst[0].next = 1;
+    list_p[0].next = 1;
 
-    tree_copy.sort_flag = true;
+    tree->sort_flag = true;
 
     //////////////////////////////
 
-    for (long long int key = ++s_ind; key <= (long long int ) tree_copy.capacity; key++)
+    for (long long int key = ++s_ind; key <= (long long int ) tree->capacity; key++)
     {
-        tree_copy.lst[key].prev =  1 - key;
+        list_p[key].prev =  1 - key;
 
-        tree_copy.lst[key].next = -1 - key;
+        list_p[key].next = -1 - key;
     }
 
     if (s_ind > tree->capacity)
-        tree_copy.free = 0;
+        tree->free = 0;
     else
-        tree_copy.free = 0 - s_ind;
+        tree->free = 0 - s_ind;
 
-    tree_copy.lst[s_ind].prev = 0;
+    list_p[s_ind].prev = 0;
 
-    tree_copy.lst[tree_copy.capacity].next = 0;
+    list_p[tree->capacity].next = 0;
 
     free(tree->lst);
 
-    tree->lst = tree_copy.lst;
-
-    tree->sort_flag = tree_copy.sort_flag;
-
-    tree->free = tree_copy.free;
+    tree->lst = list_p;
 
     printf("Linearization done.\n");
 }
@@ -268,7 +266,7 @@ void list_dump(Tree* tree)
     (
         dump,
 
-        "digraph G{\n rankdir=\"LR\" \n size=\"10\" "
+        "digraph G{\n rankdir=\"LR\" \n size=\"100\" "
 
         "node [shape = record, fontname=Arial];\n     "
     );
