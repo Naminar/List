@@ -15,8 +15,6 @@
 
 typedef int type;
 
-//===============================================
-
 typedef struct List{
 
     type data         ;
@@ -43,6 +41,10 @@ typedef struct Tree{
     bool sort_flag      ;
 
 } Tree;
+
+//===============================================
+
+const List marker_list = {.data = -8, .next = -8, .prev = -8};
 
 //===============================================
 

@@ -97,6 +97,7 @@ size_t list_delete_after(Tree* tree, long long int num)
     num = next_cell;
 
     next_cell = DOUBLE_NEXT;
+
     long long int free_cell = 0 - tree->lst[num].next;
 
     if (next_cell == 0)
@@ -128,14 +129,16 @@ void do_list_linearization(Tree* tree, const char *const password)
                "\t\tGod bless you!\n\n");
         return;
     }
+    else if (tree->lst[0].prev == 0)
+    {
+        printf("Please, insert one element.\n");
+
+        return;
+    }
 
     printf("Linearization started.\n");
 
-    List* list_p = NULL;
-
-    list_p = (List*) calloc(tree->capacity + 1, sizeof(List));
-
-    assert(list_p);
+    List list_tmp = {};
 
     long long int s_ind = 0;
 
@@ -146,22 +149,35 @@ void do_list_linearization(Tree* tree, const char *const password)
         if (!next_cell)
             break;
 
-        list_p[s_ind + 1] = tree->lst[next_cell];
+        if (tree->lst[s_ind + 1].next + tree->lst[s_ind + 1].prev >= 0 )
+        {
+            list_tmp = tree->lst[s_ind + 1];
 
-        list_p[s_ind + 1].next = s_ind + 2;
+            tree->lst[tree->lst[s_ind + 1].prev].next = next_cell;
+        }
+        else
+        {
+            list_tmp  = marker_list;
+        }
 
-        list_p[s_ind + 1].prev = s_ind ;
+        tree->lst[s_ind + 1] = tree->lst[next_cell];
 
-        next_cell  = NEXT_OF_NEXT_CELL;
+        tree->lst[next_cell] = list_tmp;
+
+        next_cell  = tree->lst[s_ind + 1].next;
+
+        tree->lst[s_ind + 1].next = s_ind + 2;
+
+        tree->lst[s_ind + 1].prev = s_ind ;
     }
 
-    list_p[s_ind].next = 0;
+    tree->lst[s_ind].next = 0;
 
     /////////////////////////
 
-    list_p[0].prev = s_ind;
+    tree->lst[0].prev = s_ind;
 
-    list_p[0].next = 1;
+    tree->lst[0].next = 1;
 
     tree->sort_flag = true;
 
@@ -169,23 +185,23 @@ void do_list_linearization(Tree* tree, const char *const password)
 
     for (long long int key = ++s_ind; key <= (long long int ) tree->capacity; key++)
     {
-        list_p[key].prev =  1 - key;
+        tree->lst[key].prev =  1 - key;
 
-        list_p[key].next = -1 - key;
+        tree->lst[key].next = -1 - key;
+
+        tree->lst[key].data = 0;
     }
 
     if (s_ind > tree->capacity)
         tree->free = 0;
     else
+    {
         tree->free = 0 - s_ind;
 
-    list_p[s_ind].prev = 0;
+        tree->lst[s_ind].prev = 0;
+    }
 
-    list_p[tree->capacity].next = 0;
-
-    free(tree->lst);
-
-    tree->lst = list_p;
+    tree->lst[tree->capacity].next = 0;
 
     printf("Linearization done.\n");
 }
@@ -246,7 +262,7 @@ void list_dump(Tree* tree)
         "<f1> linearization password\\n %s  |"
         "<f2> max capacity          \\n %u  |"
         "<f3> first free cell       \\n %lld|"
-        "<f4> sort flag             \\n %d   "
+        "<f4> linearization flag    \\n %d   "
         "\\n-------------------------------- "
         "\\n0 - not sorted\\l1 - sorted\\l  |"
         "<f5> occupied cells number \\n %u  \"];"
@@ -313,7 +329,7 @@ void list_dump(Tree* tree)
 {
     Tree der = {"my"}; //init your password;
 
-    size_t capacity = 9;
+    size_t capacity = 5;
 
     list_init(&der, capacity);
 
@@ -323,15 +339,19 @@ void list_dump(Tree* tree)
     list_insert(&der, 3, 4);
     list_insert(&der, 4, 55);
 
+    //list_delete_after(&der, 1);
+    //list_delete_after(&der, 1);
+    //list_delete_after(&der, 1);//
+
     do_list_linearization(&der, "my"); //Confirm the password
 
     list_delete_after(&der,1);
 
-    //printf("$$ %lld $$\n", der.free);
+    printf("$$ %lld $$\n", der.free);
 
     //list_insert(&der, 1, 2);
 
-    //printf("$$ %lld $$\n", der.free);//serch_element(&der, 2));
+    printf("$$ %lld $$\n", der.free);//serch_element(&der, 2));
 
     for (int ind = 0; ind <= capacity; ind++)
       printf("%d = %d__%lld__%lld\n", ind, der.lst[ind].data, der.lst[ind].next, der.lst[ind].prev);
