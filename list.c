@@ -282,7 +282,7 @@ void list_dump(Tree* tree)
 
             "elem%lld -> elem%lld;  "
             "elem%lld[label = \" {  "
-            "velue  \\n %d  |       "
+            "value  \\n %d  |       "
             "next   \\n %lld|       "
             "prev   \\n %lld        "
             "} \"];\n",
@@ -301,7 +301,7 @@ void list_dump(Tree* tree)
 
         "elem%lld -> elem%lld;  "
         "elem%lld[label = \" {  "
-        "velue  \\n %d  |       "
+        "value  \\n %d  |       "
         "next   \\n %lld|       "
         "prev   \\n %lld        "
         "} \"];\n",
