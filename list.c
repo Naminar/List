@@ -157,7 +157,7 @@ void do_list_linearization(Tree* tree, const char *const password)
 
     list_p[s_ind].next = 0;
 
-    /////////////////////////////
+    /////////////////////////
 
     list_p[0].prev = s_ind;
 
@@ -165,7 +165,7 @@ void do_list_linearization(Tree* tree, const char *const password)
 
     tree->sort_flag = true;
 
-    //////////////////////////////
+    /////////////////////////
 
     for (long long int key = ++s_ind; key <= (long long int ) tree->capacity; key++)
     {
@@ -296,7 +296,7 @@ void list_dump(Tree* tree)
 
     next_cell = NEXT_OF_NEXT_CELL;
 
-    //////////////////////////////////////
+    /////////////////////////
 
     fprintf(dump, "}");
 
