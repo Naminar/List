@@ -163,20 +163,17 @@ void list_dump(Tree* tree)
 
         "struct1 [label =\" "
         "<f0> lst ptr                   \\n %p  |"
-        "<f1> linearization password    \\n %s  |"
-        "<f2> max capacity              \\n %u  |"
-        "<f3> distributed cells number  \\n %u  \"];\n"
+        "<f1> max capacity              \\n %u  |"
+        "<f2> distributed cells number  \\n %u  \"];\n"
 
         "struct1:f0 -> elem%p;\n",
 
-        tree->lst,      tree->password,
-        tree->capacity, tree->size,     tree->lst
+        tree->lst,      tree->capacity,
+        tree->size,     tree->lst
     );
 
     while (next_cell != tree->lst)  //(next_cell->next->next != NULL)
     {
-        printf("vv");
-
         fprintf
         (
             dump,
@@ -205,16 +202,18 @@ void list_dump(Tree* tree)
         "velue  \\n %d  |   "
         "next   \\n %p  |   "
         "prev   \\n %p      "
-        "} \"];\n",
+        "} \"];",
 
         next_cell,              next_cell->next,
         next_cell->next,        next_cell->next->data,
         next_cell->next->next,  next_cell->next->prev
     );
 
+    fprintf(dump, "}");
+
     fclose(dump);
 
-    system ("dot dump.dot -Tpng -o dump.png");
+    system ("dot dump.dot -Tpdf -o dump.pdf");
 
     system("dump.pdf");
 }
@@ -223,7 +222,7 @@ void list_dump(Tree* tree)
 
 /*int main(void)
 {
-    Tree der = {"my"}; //init your password;
+    Tree der = {}; //init your password;
 
     size_t capacity = 5;
 

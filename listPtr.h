@@ -23,9 +23,6 @@ typedef struct List{
 
 typedef struct Tree{
 
-    const char
-        *const password ;
-
     List* lst           ;
 
     size_t capacity     ;
