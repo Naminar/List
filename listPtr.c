@@ -46,24 +46,16 @@ bool list_insert(Tree* tree, size_t num, type value)
 
     if (next_cell->next != tree->lst)
     {
-        DBG printf("dbg$$$\n");
-
         new_cell->next = next_cell->next;
 
         new_cell->prev = next_cell;
 
-        DBG printf("dbg\n");
-
         next_cell->next->prev = new_cell;
 
         next_cell->next = new_cell;
-
-        DBG printf("dbg\n");
     }
     else
     {
-        DBG printf("dbg)))\n");
-
         tree->lst->prev = new_cell;
 
         new_cell->prev = next_cell;
@@ -71,11 +63,7 @@ bool list_insert(Tree* tree, size_t num, type value)
         new_cell->next = tree->lst;
 
         next_cell->next = new_cell;
-
-        DBG printf("dbg)))\n")    ;
     }
-
-    printf("%d",new_cell->data);
 
     return true;
 }
@@ -185,8 +173,6 @@ void list_dump(Tree* tree)
         tree->capacity, tree->size,     tree->lst
     );
 
-    DBG printf("dbg!!\n");
-
     while (next_cell != tree->lst)  //(next_cell->next->next != NULL)
     {
         printf("vv");
@@ -210,8 +196,6 @@ void list_dump(Tree* tree)
         next_cell = next_cell->next;
     }
 
-    DBG printf("dbg!!\n");
-
     fprintf
     (
         dump,
@@ -227,8 +211,6 @@ void list_dump(Tree* tree)
         next_cell->next,        next_cell->next->data,
         next_cell->next->next,  next_cell->next->prev
     );
-
-    fprintf(dump, "}");
 
     fclose(dump);
 
