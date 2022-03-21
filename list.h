@@ -51,7 +51,7 @@ const List marker_list = {.data = -8, .next = -8, .prev = -8};
 void            list_init               (Tree*, size_t)             ;
 size_t          list_insert             (Tree*, long long int, type);
 size_t          list_delete_after       (Tree*, long long int)      ;
-long long int   serch_element           (Tree*, long long int)      ;
+long long int   search_element          (Tree*, long long int)      ;
 void            do_list_linearization   (Tree*, const char *const)  ;
 void            list_destructor         (Tree*)                     ;
 void            list_dump               (Tree*)                     ;

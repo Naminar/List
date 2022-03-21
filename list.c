@@ -208,7 +208,7 @@ void do_list_linearization(Tree* tree, const char *const password)
     printf("Linearization done.\n");
 }
 
-long long int serch_element(Tree* tree, long long int s_index)
+long long int search_element(Tree* tree, long long int s_index)
 {
     assert(tree && s_index > 0);
 
@@ -352,7 +352,7 @@ void list_dump(Tree* tree)
 
     //list_insert(&der, 1, 2);
 
-    printf("$$ %lld $$\n", der.free);//serch_element(&der, 2));
+    printf("$$ %lld $$\n", der.free);//search_element(&der, 2));
 
     for (int ind = 0; ind <= capacity; ind++)
       printf("%d = %d__%lld__%lld\n", ind, der.lst[ind].data, der.lst[ind].next, der.lst[ind].prev);
